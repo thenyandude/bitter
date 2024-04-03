@@ -8,6 +8,9 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 
+require('dotenv').config();
+
+
 
 // Definerer en Mongoose-modell for brukere
 const userSchema = new mongoose.Schema({
