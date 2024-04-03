@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
+import '../css/AuthForm.css'
 
 function Login() {
   const { setIsLoggedIn, setUsername, setUserId } = useAuth(); // Update to include setUserId
@@ -24,22 +25,22 @@ function Login() {
   
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <label>
-          Username:
-          <input type="text" value={loginUsername} onChange={(e) => setLoginUsername(e.target.value)} />
-        </label>
-        <label>
-          Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <button type="submit">Login</button>
-        {errorMessage && <p>{errorMessage}</p>}
-      </form>
+    <div className="auth-container">
+        <h2>Login</h2>
+        <form onSubmit={handleLogin} className="auth-form">
+            <label>
+                Username:
+                <input type="text" value={loginUsername} onChange={(e) => setLoginUsername(e.target.value)} />
+            </label>
+            <label>
+                Password:
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </label>
+            <button type="submit">Login</button>
+            {errorMessage && <div className="feedback-message">{errorMessage}</div>}
+        </form>
     </div>
-  );
+);
 }
 
 export default Login;

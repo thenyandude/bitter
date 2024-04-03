@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import '../css/AuthForm.css'
 function SignUp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,9 +25,9 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <h2>Registrer deg</h2>
-      <form onSubmit={handleSignUp}>
+    <div className="sign-up-container">
+    <h2>Registrer deg</h2>
+    <form onSubmit={handleSignUp} className="sign-up-form">
         <label>
           Brukernavn:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -41,7 +41,7 @@ function SignUp() {
           <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
         </label>
         <button type="submit">Registrer</button>
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <div className="feedback-message">{errorMessage}</div>}
       </form>
     </div>
   );

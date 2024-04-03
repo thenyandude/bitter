@@ -1,0 +1,43 @@
+/* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: #f4f4f4;
+}
+
+/* Blog Post Styles */
+.post {
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  background: #fff;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.post h3 {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.post p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #666;
+}
+
+.post small {
+  display: block;
+  margin-top: 10px;
+  color: #aaa;
+}
+
+.post {
+  border: 1px solid #ddd; /* Thin border for the box */
+  background-color: #fff; /* White background color for each post */
+  margin: 20px auto; /* Margin for spacing between posts */
+  padding: 20px; /* Padding inside the post box for spacing content */
+  border-radius: 4px; /* Rounded corners for the boxes */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadow for a subtle 3D effect */
+  max-width: 600px; /* Maximum width of each post box */
+}

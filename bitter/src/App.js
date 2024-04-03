@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
+import './css/App.css';
 import Header from './components/Header';
-import SignUp from './components/signUp';
-import Login from './components/logIn';
-import UserHome from './components/userHome';
+import SignUp from './components/SignUp';
+import Login from './components/LogIn';
+import UserHome from './components/UserHome';
 import Home from './components/Home';
 import FindPosts from './components/FindPosts'; // Import the FindPosts component
 
@@ -21,7 +21,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<UserHome userId={localStorage.getItem('userId')} />} />
-            <Route path="/:username" element={<FindPosts />} /> {/* New route for FindPosts */}
+            <Route path="/:username" element={<FindPosts />} />
           </Routes>
         </Router>
       </div>

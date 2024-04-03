@@ -1,0 +1,42 @@
+/* Header styles */
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .header-logo, .header-title, .header-auth {
+    flex-grow: 1;
+  }
+  
+  .header-title {
+    text-align: center;
+  }
+  
+  .header-auth {
+    text-align: right;
+  }
+  
+  /* Shared styles for log in and log out */
+  .auth-link {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  .auth-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Make sure button doesn't have outline when focused */
+  .auth-link:focus {
+    outline: none;
+  }

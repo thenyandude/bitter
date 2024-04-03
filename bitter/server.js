@@ -130,9 +130,23 @@ app.post('/api/login', async (req, res) => {
 });
 
 
-  
+// Backend route to fetch posts by username
+app.get('/api/posts/:username', async (req, res) => {
+  try {
+    const { username } = req.params;
+    const user = await User.findOne({ username });
 
-  
+    if (!user) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+
+    const posts = await Post.find({ userId: user._id }).sort({ created: -1 }).limit(5);
+    res.status(200).send(posts);
+  } catch (error) {
+    res.status(500).send({ message: 'Error fetching posts' });
+  }
+});
+
 
 
 
