@@ -7,19 +7,24 @@ function UserHome() {
   const [posts, setPosts] = useState([]);
   const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        console.log("Fetching posts for user ID:", userId); // Log the userId
-        const response = await axios.get(`http://localhost:3001/api/posts?userId=${userId}`);
-        setPosts(response.data.slice(0, 5));
-      } catch (error) {
-        console.error("Error fetching posts", error);
-      }
-    };
+  // Function to fetch posts
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/api/posts?userId=${userId}`);
+      setPosts(response.data.slice(0, 5));
+    } catch (error) {
+      console.error("Error fetching posts", error);
+    }
+  };
 
+  useEffect(() => {
     if (userId) fetchPosts();
-}, [userId]);
+    // Set up a timer to fetch posts every 30 seconds
+    const intervalId = setInterval(fetchPosts, 30000); // adjust the time as appropriate
+
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [userId]);
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
@@ -29,6 +34,7 @@ function UserHome() {
       setPosts([response.data, ...posts]);
       setTitle('');
       setContent('');
+      fetchPosts(); // Re-fetch posts to ensure the list is updated
     } catch (error) {
       console.error("Error creating post", error);
     }
