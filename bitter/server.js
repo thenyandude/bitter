@@ -115,27 +115,21 @@ app.post('/api/login', async (req, res) => {
   
   app.get('/api/posts', async (req, res) => {
     try {
-      const posts = await Post.find().populate('userId', 'username').sort({ created: -1 });
-      res.status(200).send(posts);
-    } catch (error) {
-      res.status(500).send({ message: 'Serverfeil under henting av innlegg' });
-    }
-  });
+        const { userId } = req.query;
 
-  app.get('/api/posts/:username', async (req, res) => {
-    try {
-      const { username } = req.params;
-      const user = await User.findOne({ username });
-      if (!user) {
-        return res.status(404).send({ message: 'User not found' });
-      }
-  
-      const posts = await Post.find({ userId: user._id }).sort({ created: -1 });
-      res.status(200).send(posts);
+        let query = {};
+        if (userId) {
+            query.userId = userId;
+        }
+
+        const posts = await Post.find(query).populate('userId', 'username').sort({ created: -1 });
+        res.status(200).send(posts);
     } catch (error) {
-      res.status(500).send({ message: 'Error fetching posts' });
+        res.status(500).send({ message: 'Error fetching posts' });
     }
-  });
+});
+
+
   
 
   

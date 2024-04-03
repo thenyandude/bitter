@@ -1,31 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function UserHome({ userId }) { // Accept userId as a prop
+function UserHome() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [posts, setPosts] = useState([]);
+  const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        console.log("Fetching posts for user ID:", userId); // Log the userId
         const response = await axios.get(`http://localhost:3001/api/posts?userId=${userId}`);
-        setPosts(response.data.slice(0, 5)); // Get only the first 5 posts
+        setPosts(response.data.slice(0, 5));
       } catch (error) {
         console.error("Error fetching posts", error);
       }
     };
 
-    fetchPosts();
-  }, [userId]);
-
-
+    if (userId) fetchPosts();
+}, [userId]);
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3001/api/posts', { userId, title, content });
-      setPosts([{ title, content }, ...posts]);
+      // Use the complete post object from the response
+      setPosts([response.data, ...posts]);
       setTitle('');
       setContent('');
     } catch (error) {
