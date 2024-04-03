@@ -21,19 +21,18 @@ function Home() {
     const recentPosts = posts.slice(0, 5); // Get the first 5 posts
 
     return (
-        <div>
-            <h2>Siste på Bitter</h2>
-            <div>
-                {recentPosts.map((post, index) => (
-                    <div key={index}>
-                        <h3>{post.title}</h3>
-                        <p>{post.content}</p>
-                        <small>Posted by: {post.userId?.username} on {new Date(post.created).toLocaleString()}</small>
-                    </div>
-                ))}
+        <div className="container">
+          <h2>Siste på Bitter</h2>
+          {recentPosts.map((post, index) => (
+            // Apply the .post class to each post container
+            <div key={index} className="post">
+              <h3>{post.title}</h3>
+              <p>{post.content}</p>
+              <small>Posted by: {post.userId?.username} on {new Date(post.created).toLocaleString()}</small>
             </div>
+          ))}
         </div>
-    );
+      );      
 }
 
 export default Home;

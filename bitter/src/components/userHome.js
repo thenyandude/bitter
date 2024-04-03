@@ -35,7 +35,7 @@ function UserHome() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Create a New Post</h2>
       <form onSubmit={handleCreatePost}>
         <label>
@@ -52,7 +52,7 @@ function UserHome() {
       <div>
         <h3>Previous Posts:</h3>
         {posts.map((post, index) => (
-          <div key={index}>
+          <div key={index} className="post">
             <h4>{post.title}</h4>
             <p>{post.content}</p>
           </div>
