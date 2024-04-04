@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../css/AuthForm.css'
+import '../css/AuthForm.css';
+
 function SignUp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,9 +26,9 @@ function SignUp() {
   };
 
   return (
-    <div className="sign-up-container">
-    <h2>Registrer deg</h2>
-    <form onSubmit={handleSignUp} className="sign-up-form">
+    <div className="auth-container">
+      <h2>Registrer deg</h2>
+      <form onSubmit={handleSignUp} className="auth-form">
         <label>
           Brukernavn:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />

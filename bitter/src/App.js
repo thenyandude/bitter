@@ -6,7 +6,7 @@ import SignUp from './components/SignUp';
 import Login from './components/LogIn';
 import UserHome from './components/UserHome';
 import Home from './components/Home';
-import FindPosts from './components/FindPosts'; // Import the FindPosts component
+import FindPosts from './components/FindPosts';
 
 import { AuthProvider } from './context/AuthContext';
 
