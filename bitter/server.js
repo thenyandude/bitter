@@ -17,7 +17,6 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
   });
-  
 
 const User = mongoose.model('User', userSchema);
 
@@ -155,7 +154,7 @@ app.get('/api/posts/:username', async (req, res) => {
 
 
   
-const port = 3001; // eller hvilken som helst annen port du foretrekker
+const port = 3000; // eller hvilken som helst annen port du foretrekker
 app.listen(port, () => {
   console.log(`Server kjører på port ${port}`);
 });
