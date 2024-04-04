@@ -8,8 +8,6 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 
-require('dotenv').config();
-
 
 
 // Definerer en Mongoose-modell for brukere
@@ -155,6 +153,6 @@ app.get('/api/posts/:username', async (req, res) => {
 
   
 const port = 3000; // eller hvilken som helst annen port du foretrekker
-app.listen(port, () => {
+app.listen(port, '0.0.0.0',  () => {
   console.log(`Server kjører på port ${port}`);
 });
