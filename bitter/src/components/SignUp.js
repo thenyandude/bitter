@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../css/AuthForm.css';
-
+import '../css/AuthForm.css'
 function SignUp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +16,7 @@ function SignUp() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/api/signup', { username, password });
+      const response = await axios.post('http://10.12.5.206:3000/api/signup', { username, password });
       console.log(response.data);
       // Redirect to login page or dashboard after successful sign-up
     } catch (error) {
@@ -26,9 +25,9 @@ function SignUp() {
   };
 
   return (
-    <div className="auth-container">
-      <h2>Registrer deg</h2>
-      <form onSubmit={handleSignUp} className="auth-form">
+    <div className="sign-up-container">
+    <h2>Registrer deg</h2>
+    <form onSubmit={handleSignUp} className="sign-up-form">
         <label>
           Brukernavn:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />

@@ -20,7 +20,7 @@ function UserHome() {
   // Function to fetch posts
   const fetchPosts = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/posts?userId=${userId}`);
+      const response = await axios.get(`http://10.12.5.206:3000/api/posts?userId=${userId}`);
       setPosts(response.data.slice(0, 5));
     } catch (error) {
       console.error("Error fetching posts", error);
@@ -37,7 +37,7 @@ function UserHome() {
   const handleCreatePost = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/api/posts', { userId, title, content });
+      const response = await axios.post('http://10.12.5.206:3000/api/posts', { userId, title, content });
       // Use the complete post object from the response
       setPosts([response.data, ...posts]);
       setTitle('');
