@@ -18,7 +18,7 @@ function Home() {
         fetchPosts();
     }, []);
 
-    const recentPosts = posts.slice(0, 5); // Get the first 5 posts
+    const recentPosts = posts.slice(0, 10); // Get the first 5 posts
 
     return (
         <div className="container">
