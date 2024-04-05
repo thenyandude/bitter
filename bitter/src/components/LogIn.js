@@ -12,7 +12,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://10.12.5.206:3000/api/login', { username: loginUsername, password });
+      const response = await axios.post('http://10.12.5.206/api/login', { username: loginUsername, password });
       setIsLoggedIn(true);
       setUsername(loginUsername);
       setUserId(response.data.userId); // Store the user ID in the context
