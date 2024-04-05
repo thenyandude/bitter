@@ -48,6 +48,18 @@ function UserHome() {
     }
   };
 
+  const deletePost = async (postId) => {
+    try {
+      await axios.delete(`http://localhost:3001/api/posts/${postId}`);
+      // Remove the post from the state to update UI
+      setPosts(currentPosts => currentPosts.filter(post => post._id !== postId));
+    } catch (error) {
+      console.error('Error deleting post', error);
+      // Handle errors (e.g., display a message to the user)
+    }
+  };
+  
+
   return (
     <div className="user-home-container">
       <div className="create-post-form">
@@ -80,9 +92,10 @@ function UserHome() {
       <div className="posts-list">
         <h3>Previous Posts:</h3>
         {posts.map((post, index) => (
-          <div key={index} className="post">
+          <div key={index} className="post-item">
             <h4>{post.title}</h4>
             <p>{post.content}</p>
+            <button className="delete-post-button" onClick={() => deletePost(post._id)}>Delete</button>
           </div>
         ))}
       </div>

@@ -151,6 +151,24 @@ app.get('/api/posts/:username', async (req, res) => {
 });
 
 
+// DELETE route for a post
+app.delete('/api/posts/:postId', async (req, res) => {
+  try {
+    const { postId } = req.params;
+    // Optional: Add authorization check here to ensure the user owns the post
+
+    const deletedPost = await Post.findOneAndDelete({ _id: postId });
+    if (!deletedPost) {
+      return res.status(404).send({ message: 'Post not found' });
+    }
+
+    res.status(200).send({ message: 'Post deleted', postId: deletedPost._id });
+  } catch (error) {
+    res.status(500).send({ message: 'Error deleting post' });
+  }
+});
+
+
 
 
 
