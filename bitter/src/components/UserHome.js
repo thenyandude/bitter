@@ -50,7 +50,7 @@ function UserHome() {
 
   const deletePost = async (postId) => {
     try {
-      await axios.delete(`http://localhost:3001/api/posts/${postId}`);
+      await axios.delete(`http://10.12.5.206/api/posts/${postId}`);
       // Remove the post from the state to update UI
       setPosts(currentPosts => currentPosts.filter(post => post._id !== postId));
     } catch (error) {
