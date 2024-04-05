@@ -17,7 +17,7 @@ function SignUp() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/api/signup', { username, password });
+      const response = await axios.post('http://10.12.5.206/api/signup', { username, password });
       console.log(response.data);
       // Redirect to login page or dashboard after successful sign-up
     } catch (error) {

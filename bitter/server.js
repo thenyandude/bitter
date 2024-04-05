@@ -8,8 +8,6 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 
-require('dotenv').config();
-
 
 
 // Definerer en Mongoose-modell for brukere
@@ -17,7 +15,6 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
   });
-  
 
 const User = mongoose.model('User', userSchema);
 
@@ -173,7 +170,7 @@ app.delete('/api/posts/:postId', async (req, res) => {
 
 
   
-const port = 3001; // eller hvilken som helst annen port du foretrekker
-app.listen(port, () => {
+const port = 80; // eller hvilken som helst annen port du foretrekker
+app.listen(port, '0.0.0.0',  () => {
   console.log(`Server kjører på port ${port}`);
 });

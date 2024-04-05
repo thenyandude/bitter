@@ -10,7 +10,7 @@ function FindPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/api/posts/${username}`);
+        const response = await axios.get(`http://10.12.5.206/api/posts/${username}`);
         setPosts(response.data); // Get all posts
       } catch (error) {
         console.error("Error fetching posts", error);
