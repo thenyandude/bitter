@@ -22,7 +22,7 @@ function Home() {
 
     return (
         <div className="container">
-          <h2>Siste på Bitter</h2>
+          <h2>Last posts on Bitter</h2>
           {recentPosts.map((post, index) => (
             // Apply the .post class to each post container
             <div key={index} className="post">

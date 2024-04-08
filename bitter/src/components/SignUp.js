@@ -21,7 +21,7 @@ function SignUp() {
       console.log(response.data);
       // Redirect to login page or dashboard after successful sign-up
     } catch (error) {
-      setErrorMessage(error.response ? error.response.data.message : 'Feil ved registrering');
+      setErrorMessage(error.response ? error.response.data.message : 'Eroor during registering');
     }
   };
 
@@ -30,18 +30,18 @@ function SignUp() {
       <h2>Registrer deg</h2>
       <form onSubmit={handleSignUp} className="auth-form">
         <label>
-          Brukernavn:
+          Username:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
         <label>
-          Passord:
+          Password:
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
         <label>
-          Bekreft passord:
+          Confirm Password:
           <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
         </label>
-        <button type="submit">Registrer</button>
+        <button type="submit">Register</button>
         {errorMessage && <div className="feedback-message">{errorMessage}</div>}
       </form>
     </div>

@@ -22,9 +22,9 @@ function Header() {
         )}
       </div>            <div className="header-auth">
                 {isLoggedIn ? (
-                    <button onClick={logout} className="auth-link">Logg Ut</button>
+                    <button onClick={logout} className="auth-link">Log Out</button>
                 ) : (
-                    <Link to="/login" className="auth-link">Logg Inn</Link>
+                    <Link to="/login" className="auth-link">Log In</Link>
                 )}
             </div>
         </header>
