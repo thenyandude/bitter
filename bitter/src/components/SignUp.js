@@ -27,7 +27,7 @@ function SignUp() {
 
   return (
     <div className="auth-container">
-      <h2>Registrer deg</h2>
+      <h2>Make an account</h2>
       <form onSubmit={handleSignUp} className="auth-form">
         <label>
           Username:
