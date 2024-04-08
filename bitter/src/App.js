@@ -14,15 +14,22 @@ function RedirectToGuide() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    const isFirstVisit = localStorage.getItem('firstVisit') === 'yes';
-    if (isFirstVisit) {
+    let isFirstVisit = localStorage.getItem('firstVisit');
+    if (isFirstVisit === null) {
+      // If firstVisit is not set, set it to 'yes'
+      localStorage.setItem('firstVisit', 'yes');
+      isFirstVisit = 'yes';
+    }
+
+    if (isFirstVisit === 'yes') {
       navigate('/guide');
       localStorage.setItem('firstVisit', 'no');
     }
   }, [navigate]);
 
-  return null; // This component does not render anything
+  return null;
 }
+
 
 function App() {
   return (
