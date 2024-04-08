@@ -2,27 +2,27 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
 import '../css/AuthForm.css'
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const { setIsLoggedIn, setUsername, setUserId } = useAuth(); // Update to include setUserId
   const [loginUsername, setLoginUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://10.12.5.206/api/login', { username: loginUsername, password });
+      if (response.status === 200) {
       setIsLoggedIn(true);
       setUsername(loginUsername);
       setUserId(response.data.userId); // Store the user ID in the context
       localStorage.setItem('userId', response.data.userId); // Store the user ID in local storage
-      if (response.data.redirectTo) {
-        // Redirect to the home page
-        window.location.href = response.data.redirectTo;
-      }  
-
-    } catch (error) {
+      navigate('/home'); // Redirect to home on successful login
+    }
+  } catch (error) {
       setErrorMessage(error.response ? error.response.data.message : 'Error logging in');
     }
   };
