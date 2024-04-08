@@ -33,7 +33,8 @@ function App() {
         <Router>
           <Header />
           <Routes>
-          <Route path="/" element={firstVisit ? <Navigate to="/guide" /> : <Home />} />
+            <Route path="/" element={firstVisit ? <Navigate to="/guide" /> : <Home />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<UserHome userId={localStorage.getItem('userId')} />} />
             <Route path="/guide" element={<Guide />} />
