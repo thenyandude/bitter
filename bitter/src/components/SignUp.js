@@ -18,9 +18,10 @@ function SignUp() {
 
     try {
       const response = await axios.post('http://10.12.5.206/api/signup', { username, password });
-      console.log(response.data);
-      // Redirect to login page or dashboard after successful sign-up
-    } catch (error) {
+      if (response.data.redirectTo) {
+        // Redirect to the login page
+        window.location.href = response.data.redirectTo;
+      }    } catch (error) {
       setErrorMessage(error.response ? error.response.data.message : 'Eroor during registering');
     }
   };

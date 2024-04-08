@@ -17,7 +17,11 @@ function Login() {
       setUsername(loginUsername);
       setUserId(response.data.userId); // Store the user ID in the context
       localStorage.setItem('userId', response.data.userId); // Store the user ID in local storage
-      // Redirect to the user's home page or dashboard
+      if (response.data.redirectTo) {
+        // Redirect to the home page
+        window.location.href = response.data.redirectTo;
+      }  
+
     } catch (error) {
       setErrorMessage(error.response ? error.response.data.message : 'Error logging in');
     }
