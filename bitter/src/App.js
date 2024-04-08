@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './css/App.css';
 import Header from './components/Header';
@@ -11,27 +10,26 @@ import FindPosts from './components/FindPosts';
 import Guide from './components/Guide';
 import { AuthProvider } from './context/AuthContext';
 
-function App() {
+function RedirectToGuide() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the 'firstVisit' flag is set to 'yes'
     const isFirstVisit = localStorage.getItem('firstVisit') === 'yes';
-
     if (isFirstVisit) {
-      // Navigate to the guide page
       navigate('/guide');
-
-      // Update 'firstVisit' in local storage
       localStorage.setItem('firstVisit', 'no');
     }
   }, [navigate]);
 
+  return null; // This component does not render anything
+}
 
+function App() {
   return (
     <AuthProvider>
       <div className="App">
         <Router>
+          <RedirectToGuide /> {/* Place the navigation logic here */}
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
