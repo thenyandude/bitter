@@ -8,6 +8,8 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 
+require('dotenv').config();
+
 
 
 // Definerer en Mongoose-modell for brukere
@@ -15,6 +17,7 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
   });
+  
 
 const User = mongoose.model('User', userSchema);
 
@@ -148,29 +151,11 @@ app.get('/api/posts/:username', async (req, res) => {
 });
 
 
-// DELETE route for a post
-app.delete('/api/posts/:postId', async (req, res) => {
-  try {
-    const { postId } = req.params;
-    // Optional: Add authorization check here to ensure the user owns the post
-
-    const deletedPost = await Post.findOneAndDelete({ _id: postId });
-    if (!deletedPost) {
-      return res.status(404).send({ message: 'Post not found' });
-    }
-
-    res.status(200).send({ message: 'Post deleted', postId: deletedPost._id });
-  } catch (error) {
-    res.status(500).send({ message: 'Error deleting post' });
-  }
-});
-
-
 
 
 
   
 const port = 80; // eller hvilken som helst annen port du foretrekker
-app.listen(port, '0.0.0.0',  () => {
+app.listen(port,'0.0.0.0', () => {
   console.log(`Server kjører på port ${port}`);
 });
