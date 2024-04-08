@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './css/App.css';
 import Header from './components/Header';
 import SignUp from './components/SignUp';
@@ -12,19 +12,20 @@ import Guide from './components/Guide';
 import { AuthProvider } from './context/AuthContext';
 
 function App() {
-  const [firstVisit, setFirstVisit] = useState(false);
+  let navigate = useNavigate();
 
   useEffect(() => {
     // Check if the 'firstVisit' flag is set to 'yes'
     const isFirstVisit = localStorage.getItem('firstVisit') === 'yes';
-    setFirstVisit(isFirstVisit);
 
-    // Set 'firstVisit' in local storage to 'no' after the first redirect
     if (isFirstVisit) {
+      // Navigate to the guide page
+      navigate('/guide');
+
+      // Update 'firstVisit' in local storage
       localStorage.setItem('firstVisit', 'no');
     }
-  }, []);
-
+  }, [navigate]);
 
 
   return (
@@ -33,7 +34,7 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={firstVisit ? <Navigate to="/guide" /> : <Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<UserHome userId={localStorage.getItem('userId')} />} />
