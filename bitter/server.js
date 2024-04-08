@@ -54,7 +54,7 @@ app.post('/api/signup', async (req, res) => {
       });
   
       await user.save();
-      res.status(201).send({ message: 'Bruker opprettet', userId: user._id });
+res.status(201).send({ message: 'Bruker opprettet', userId: user._id, redirectTo: '/login' });
     } catch (error) {
       res.status(500).send('Serverfeil ved opprettelse av bruker');
     }
@@ -79,8 +79,8 @@ app.post('/api/login', async (req, res) => {
         return res.status(400).send({ message: 'Ugyldig brukernavn eller passord' });
       }
   
-      res.status(200).send({ message: 'Innlogging vellykket', userId: user._id });
-    } catch (error) {
+      res.status(200).send({ message: 'Innlogging vellykket', userId: user._id, redirectTo: '/home' });
+        } catch (error) {
       res.status(500).send({ message: 'Serverfeil under innlogging' });
     }
   });
